@@ -8,4 +8,4 @@
  */
 
 // Whitelist of MVC actions allowed from a GET request.
-$whiltelistGET = array('listProducts', 'viewProduct', 'login', 'addProduct', 'register', 'myAccount', 'loginProcess');
+$whiltelistGET = array('listProducts', 'viewProduct', 'login', 'addProduct', 'register', 'myAccount', 'loginProcess', 'logout');

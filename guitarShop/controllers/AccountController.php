@@ -66,6 +66,7 @@
        session_unset();
        session_destroy();
        Page::$title = 'Farkleberry Home';
+       $vm = ProductsVM::getFeaturedInstance();
        require(APP_NON_WEB_BASE_DIR . 'views/home.php');
      }
 
