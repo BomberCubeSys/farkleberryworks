@@ -48,35 +48,33 @@ class UserDAM extends DAM {
         $statement->execute();
         $userDB = $statement->fetch();
         $statement->closeCursor();
-        if ($userDB == null) {
+        if ($userDB !== null)
+          return 1;//error
 
-            // Add a new user to the database
-            $query = 'INSERT INTO products
-                (firstname, lastname, email,
-                phone, address, city, zip, country,
-                state, password, admin)
-              VALUES
-                (:firstname, :lastname, :email,
-                :phone, :address, :city, :zip,
-                :country, :state, :password, :admin )';
-            $statement = $this->db->prepare($query);
-            $statement->bindValue(':firstname',$user->firstname);
-            $statement->bindValue(':lastname',$user->lastname);
-            $statement->bindValue(':email',$user->email);
-            $statement->bindValue(':phone',$user->phone);
-            $statement->bindValue(':address',$user->address);
-            $statement->bindValue(':city',$user->city);
-            $statement->bindValue(':zip',$user->zip);
-            $statement->bindValue(':country',$user->country);
-            $statement->bindValue(':state',$user->state);
-            $statement->bindValue(':password',$user->password);
-            $statement->bindValue(':admin',$user->admin);
-            $statement->execute();
-            $statement->closeCursor();
-            return 0; //no error
-        } else {
-            return 1;//error
-        }
+        // Add a new user to the database
+        $query = 'INSERT INTO users
+            (firstname, lastname, email,
+            phone, address, city, zip, country,
+            state, password, admin)
+          VALUES
+            (:firstname, :lastname, :email,
+            :phone, :address, :city, :zip,
+            :country, :state, :password, :admin )';
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':firstname',$user->firstname);
+        $statement->bindValue(':lastname',$user->lastname);
+        $statement->bindValue(':email',$user->email);
+        $statement->bindValue(':phone',$user->phone);
+        $statement->bindValue(':address',$user->address);
+        $statement->bindValue(':city',$user->city);
+        $statement->bindValue(':zip',$user->zip);
+        $statement->bindValue(':country',$user->country);
+        $statement->bindValue(':state',$user->state);
+        $statement->bindValue(':password',$user->password);
+        $statement->bindValue(':admin',$user->admin);
+        $statement->execute();
+        $statement->closeCursor();
+        return 0; //no error
     }
 
     // This function should only be used by logged in users on their own user email.
