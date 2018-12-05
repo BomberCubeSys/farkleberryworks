@@ -39,41 +39,46 @@ class UserDAM extends DAM {
      * database, the object is updated.
      * @param type $user the User object to be written.
      */
-    public function createUser(User $user) {
+    public function createUser(User $newUser) {
         // Check to see if the user is already in the database.
         $query = 'SELECT email FROM users WHERE email = :email';
         $statement = $this->db->prepare($query);
-        $statement->bindValue(':email', $user->email);
+        $statement->bindValue(':email', $newUser->email);
         $statement->execute();
         $userDB = $statement->fetch();
         $statement->closeCursor();
-        if ($userDB !== null) {
+        if ($userDB == null) {
+          // Add a new user to the database
+          $query = 'INSERT INTO users
+              (firstname, lastname, email,
+              phone, address, city, zip, country,
+              state, password, admin)
+            VALUES
+              (:firstname, :lastname, :email,
+              :phone, :address, :city, :zip,
+              :country, :state, :password, :admin )';
+          $statement = $this->db->prepare($query);
+          $statement->bindValue(':firstname',$newUser->firstname);
+          $statement->bindValue(':lastname',$newUser->lastname);
+          $statement->bindValue(':email',$newUser->email);
+          $statement->bindValue(':phone',$newUser->phone);
+          $statement->bindValue(':address',$newUser->address);
+          $statement->bindValue(':city',$newUser->city);
+          $statement->bindValue(':zip',$newUser->zip);
+          $statement->bindValue(':country',$newUser->country);
+          $statement->bindValue(':state',$newUser->state);
+          $statement->bindValue(':password',$newUser->password);
+          $statement->bindValue(':admin', 0 );
+          $statement->execute();
+          $statement->closeCursor();
+          //no error
+          return;
+        } else {
           return var_dump($userDB) . "email already exists";//error
         }
-        // Add a new user to the database
-        $query = 'INSERT INTO users
-            (firstname, lastname, email,
-            phone, address, city, zip, country,
-            state, password, admin)
-          VALUES
-            (:firstname, :lastname, :email,
-            :phone, :address, :city, :zip,
-            :country, :state, :password, :admin )';
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':firstname',$user->firstname);
-        $statement->bindValue(':lastname',$user->lastname);
-        $statement->bindValue(':email',$user->email);
-        $statement->bindValue(':phone',$user->phone);
-        $statement->bindValue(':address',$user->address);
-        $statement->bindValue(':city',$user->city);
-        $statement->bindValue(':zip',$user->zip);
-        $statement->bindValue(':country',$user->country);
-        $statement->bindValue(':state',$user->state);
-        $statement->bindValue(':password',$user->password);
-        $statement->bindValue(':admin',$user->admin);
-        $statement->execute();
-        $statement->closeCursor();
-        //no error
+
+
+
     }
 
     // This function should only be used by logged in users on their own user email.
