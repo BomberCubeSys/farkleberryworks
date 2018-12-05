@@ -30,9 +30,20 @@ class AccountVM {
     $vm = new self();
     // $vm->email = hPOST('email');
     $vm->email = $_POST['email'];
-    //if block for validation functions for email, phone, zip, and password
-    //if (hPOST('phone'))...
-    //
+    if (isset(hPOST('firstname'))) $vm->errorMsg += 'first name is required <br />';
+    if (isset(hPOST('lastname'))) $vm->errorMsg += 'last name is required <br />';
+    if (isset(hPOST('email'))) $vm->errorMsg += 'email is required <br />';
+    if (isset(hPOST('phone'))) $vm->errorMsg += 'phone is required <br />';
+    if (isset(hPOST('address'))) $vm->errorMsg += 'address is required <br />';
+    if (isset(hPOST('city'))) $vm->errorMsg += 'city is required <br />';
+    if (isset(hPOST('state'))) $vm->errorMsg += 'state is required <br />';
+    if (isset(hPOST('zip'))) $vm->errorMsg += 'zip is required <br />';
+    if (isset(hPOST('country'))) $vm->errorMsg += 'country is required <br />';
+    if (isset(hPOST('state'))) $vm->errorMsg += 'state is required <br />';
+    if (isset(hPOST('password'))) $vm->errorMsg += 'password is required <br />';
+    if (isset(hPOST('confirm'))) $vm->errorMsg += 'confirm your password <br />';
+
+    if ($vm->errorMsg !== '') return $vm;
     $varArray = array(
       'firstname' => hPOST('firstname'),
       'lastname' => hPOST('lastname'),
