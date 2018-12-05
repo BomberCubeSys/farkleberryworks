@@ -22,7 +22,7 @@ class AccountVM {
       $this->User = '';
     }
     if (isset($_SESSION['email'])) {
-      $this->user = $this->UserDAM->getUser($this->email);
+      $this->User = $this->UserDAM->getUser($this->email);
     }
   }
 
@@ -108,10 +108,12 @@ class AccountVM {
   public static function accountInstance() {
       if ( !isset($_SESSION) ) { session_start(); }
       $vm = new self();
-      if ($vm->email !== '') {
-        return $vm->UserDAM->getUser($vm->email);
+      if (isset($_SESSION['email'])) {
+        $vm->User = $vm->UserDAM->getUser($_SESSION['email']);
+        return $vm;
       } else {
-        return null;
+        $vm->errorMsg = 'Not Logged In';
+        return $vm;
       }
   }
 
