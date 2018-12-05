@@ -1,6 +1,6 @@
 <?php require('views/farkleberryHeader.php');
 	  //require('login.php');
-	  require('loginProcess.php');
+	  //require('loginProcess.php');
 	  //require_once('db/UserDAM.php');
 ?>
 <?php
@@ -42,14 +42,14 @@
         <center><h1>Login Page</h1>
         <div id="content">
             <h2>Please login by entering your e-mail and password.</h2><br/>
-			<?php echo $error.'<br/>'.'<br/>'; ?>
-        <form action="/?ctlr=account&action=login" method="post">
+			<?php if (isset($vm->errorMsg)) { echo $vm->errorMsg.'<br/>'.'<br/>'; }?>
+        <form action="." method="post">
         <input type="hidden" name="ctlr" value="account">
         <input type="hidden" name="action" value="login">
         <label>Username:</label><input type="text" name="email" placeholder="E-Mail"><br/>
         <label>&nbsp;Password:</label><input type="password" name="password" placeholder="Password">
         <br><br>
-        <button class="loginbutton" name = "login">Login</button>
+        <button type="submit" class="loginbutton" name = "submit">Login</button>
     </form>
 	</div>
     </section>

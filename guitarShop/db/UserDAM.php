@@ -19,8 +19,7 @@ class UserDAM extends DAM {
      * not in the database.
      */
     public function getUser($email) {
-        $query = 'SELECT * FROM users
-              WHERE email = :email';
+        $query = 'SELECT * FROM users WHERE email = :email';
         $statement = $this->db->prepare($query);
         $statement->bindValue(':email', $email);
         $statement->execute();
@@ -29,7 +28,21 @@ class UserDAM extends DAM {
         if ($userDB == null) {
             return null;
         } else {
-            return new User($this->mapColsToVars($userDB));
+          $foundUser = new User();
+          $foundUser->id = $userDB['id'];
+          $foundUser->firstname = $userDB['firstname'];
+          $foundUser->lastname = $userDB['lastname'];
+          $foundUser->email = $userDB['email'];
+          $foundUser->phone = $userDB['phone'];
+          $foundUser->address = $userDB['address'];
+          $foundUser->city = $userDB['city'];
+          $foundUser->state = $userDB['state'];
+          $foundUser->zip = $userDB['zip'];
+          $foundUser->country = $userDB['country'];
+          $foundUser->state = $userDB['state'];
+          $foundUser->password = $userDB['password'];
+          $foundUser->admin = $userDB['admin'];
+          return $foundUser;
         }
     }
 
@@ -75,7 +88,7 @@ class UserDAM extends DAM {
           //no error
           return;
         } else {
-          return var_dump($userDB) . "email already exists";//error
+          return "email already exists";//error
         }
 
 
@@ -139,6 +152,8 @@ class UserDAM extends DAM {
                 $varArray ['phone'] = $value;
             } else if ($key == 'address') {
                 $varArray ['address'] = $value;
+            } else if ($key == 'email' ) {
+                $varArray ['email'] = $value;
             } else if ($key == 'city') {
                 $varArray ['city'] = $value;
             } else if ($key == 'zip') {

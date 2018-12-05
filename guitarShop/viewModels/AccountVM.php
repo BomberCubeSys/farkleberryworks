@@ -22,7 +22,7 @@ class AccountVM {
       $this->User = '';
     }
     if (isset($_SESSION['email'])) {
-      $this->user = $this->UserDAM->getUser($email);
+      $this->user = $this->UserDAM->getUser($this->email);
     }
   }
 
@@ -44,21 +44,36 @@ class AccountVM {
     if (hPOST('confirm') == null) $vm->errorMsg .= 'confirm your password <br />';
 
     if ($vm->errorMsg !== '') return $vm;
-    $varArray = array(
-      'firstname' => hPOST('firstname'),
-      'lastname' => hPOST('lastname'),
-      'email' => hPOST('email'),
-      'phone' => hPOST('phone'),
-      'address' => hPOST('address'),
-      'city' => hPOST('city'),
-      'state' => hPOST('state'),
-      'zip' => hPOST('zip'),
-      'country' => hPOST('country'),
-      'state' => hPOST('state'),
-      'password' => hPOST('password'),
-      'admin' => '0' );
-    $vm->User = new User($varArray);
-    $vm->User->setPassword($varArray['password']);
+    // $varArray = array(
+    //   'firstname' => hPOST('firstname'),
+    //   'lastname' => hPOST('lastname'),
+    //   'email' => hPOST('email'),
+    //   'phone' => hPOST('phone'),
+    //   'address' => hPOST('address'),
+    //   'city' => hPOST('city'),
+    //   'state' => hPOST('state'),
+    //   'zip' => hPOST('zip'),
+    //   'country' => hPOST('country'),
+    //   'state' => hPOST('state'),
+    //   'password' => hPOST('password'),
+    //   'admin' => '0' );
+    //$vm->User = new User($varArray);
+    $vm->User = new User();
+    $vm->User->firstname = hPOST('firstname');
+    $vm->User->lastname = hPOST('lastname');
+    $vm->User->email = hPOST('email');
+    $vm->User->phone = hPOST('phone');
+    $vm->User->address = hPOST('address');
+    $vm->User->city = hPOST('city');
+    $vm->User->state = hPOST('state');
+    $vm->User->zip = hPOST('zip');
+    $vm->User->country = hPOST('country');
+    $vm->User->state = hPOST('state');
+    $vm->User->password = hPOST('password');
+    $vm->User->admin = '0' ;
+
+    // $vm->User->setPassword(hPOST('password'));
+    $vm->User->password = password_hash(hPOST('password'),PASSWORD_BCRYPT);
     $vm->errorMsg = $vm->UserDAM->createUser($vm->User);
     if ($vm->errorMsg === 0) {
       return $vm;
@@ -73,10 +88,14 @@ class AccountVM {
     if ( !isset($_SESSION) ) { session_start(); }
     $vm = new self();
     $vm->email = hPOST('email');
-    $vm->User = $vm->UserDAM->getUser($email);
-    if ($vm->User->verifyUser('password')) {
+    $vm->User = $vm->UserDAM->getUser(hPOST('email'));
+    if (!isset($vm->User)) {
+      $vm->errorMsg = "Email not found";
+      return $vm;
+    }
+    if (password_verify(hPOST('password'),$vm->User->password)) {
       $_SESSION['email'] = $vm->email;
-      $_SESSION['logged_in']==1;
+      $_SESSION['logged_in'] = 1;
       $_SESSION['time'] = time();
       return $vm;
     } else {
