@@ -52,11 +52,11 @@ class UserDAM extends DAM {
           $query = 'INSERT INTO users
               (firstname, lastname, email,
               phone, address, city, zip, country,
-              state, password, admin)
+              state, password, admin, id)
             VALUES
               (:firstname, :lastname, :email,
               :phone, :address, :city, :zip,
-              :country, :state, :password, :admin )';
+              :country, :state, :password, :admin, :id)';
           $statement = $this->db->prepare($query);
           $statement->bindValue(':firstname',$newUser->firstname);
           $statement->bindValue(':lastname',$newUser->lastname);
@@ -69,6 +69,7 @@ class UserDAM extends DAM {
           $statement->bindValue(':state',$newUser->state);
           $statement->bindValue(':password',$newUser->password);
           $statement->bindValue(':admin', 0 );
+          $statement->bindValue(':id', null);
           $statement->execute();
           $statement->closeCursor();
           //no error
