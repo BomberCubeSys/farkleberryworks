@@ -39,7 +39,7 @@ class UserDAM extends DAM {
      * database, the object is updated.
      * @param type $user the User object to be written.
      */
-    public function createUser($user) {
+    public function createUser(User $user) {
         // Check to see if the user is already in the database.
         $query = 'SELECT email FROM users
               WHERE email = :email';
