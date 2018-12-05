@@ -30,18 +30,18 @@ class AccountVM {
     $vm = new self();
     // $vm->email = hPOST('email');
     $vm->email = $_POST['email'];
-    if (isset(hPOST('firstname'))) $vm->errorMsg += 'first name is required <br />';
-    if (isset(hPOST('lastname'))) $vm->errorMsg += 'last name is required <br />';
-    if (isset(hPOST('email'))) $vm->errorMsg += 'email is required <br />';
-    if (isset(hPOST('phone'))) $vm->errorMsg += 'phone is required <br />';
-    if (isset(hPOST('address'))) $vm->errorMsg += 'address is required <br />';
-    if (isset(hPOST('city'))) $vm->errorMsg += 'city is required <br />';
-    if (isset(hPOST('state'))) $vm->errorMsg += 'state is required <br />';
-    if (isset(hPOST('zip'))) $vm->errorMsg += 'zip is required <br />';
-    if (isset(hPOST('country'))) $vm->errorMsg += 'country is required <br />';
-    if (isset(hPOST('state'))) $vm->errorMsg += 'state is required <br />';
-    if (isset(hPOST('password'))) $vm->errorMsg += 'password is required <br />';
-    if (isset(hPOST('confirm'))) $vm->errorMsg += 'confirm your password <br />';
+    if (hPOST('firstname') !== null) $vm->errorMsg += 'first name is required <br />';
+    if (hPOST('lastname') !== null) $vm->errorMsg += 'last name is required <br />';
+    if (hPOST('email') !== null) $vm->errorMsg += 'email is required <br />';
+    if (hPOST('phone') !== null) $vm->errorMsg += 'phone is required <br />';
+    if (hPOST('address') !== null) $vm->errorMsg += 'address is required <br />';
+    if (hPOST('city') !== null) $vm->errorMsg += 'city is required <br />';
+    if (hPOST('state') !== null) $vm->errorMsg += 'state is required <br />';
+    if (hPOST('zip') !== null) $vm->errorMsg += 'zip is required <br />';
+    if (hPOST('country') !== null) $vm->errorMsg += 'country is required <br />';
+    if (hPOST('state') !== null) $vm->errorMsg += 'state is required <br />';
+    if (hPOST('password') !== null) $vm->errorMsg += 'password is required <br />';
+    if (hPOST('confirm') !== null) $vm->errorMsg += 'confirm your password <br />';
 
     if ($vm->errorMsg !== '') return $vm;
     $varArray = array(
