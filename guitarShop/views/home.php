@@ -1,4 +1,5 @@
 <?php require('views/farkleberryHeader.php');
+require(APP_NON_WEB_BASE_DIR.'includes/LoginState.php');
   isLoggedInGeneral();
   ?>
 <div id="container" class="container">
