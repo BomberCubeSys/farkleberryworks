@@ -48,9 +48,9 @@ class UserDAM extends DAM {
         $statement->execute();
         $userDB = $statement->fetch();
         $statement->closeCursor();
-        if ($userDB !== null)
-          return "email already exists";//error
-
+        if ($userDB !== null) {
+          return $userDB . "email already exists";//error
+        }
         // Add a new user to the database
         $query = 'INSERT INTO users
             (firstname, lastname, email,
