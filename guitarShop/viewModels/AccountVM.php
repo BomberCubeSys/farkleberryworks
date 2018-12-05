@@ -85,6 +85,7 @@ class AccountVM {
 
   //gets password through post paramter
   public static function loginInstance() {
+    sleep(3);
     if ( !isset($_SESSION) ) { session_start(); }
     $vm = new self();
     $vm->email = hPOST('email');
