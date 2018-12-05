@@ -52,7 +52,7 @@
      // Redirect to login page on success
      if ($vm->errorMsg == '') {
        Page::$title = 'Login';
-       require(APP_NON_WEB_BASE_DIR . 'views/login.php');
+       require(APP_NON_WEB_BASE_DIR . 'views/home.php');
      } else {
        Page::$title = 'Register a new account';
        require(APP_NON_WEB_BASE_DIR . 'views/register.php');
