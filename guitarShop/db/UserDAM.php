@@ -41,7 +41,7 @@ class UserDAM extends DAM {
      */
     public function createUser(User $user) {
         // Check to see if the user is already in the database.
-        $query = 'SELECT email FROM users
+        $query = 'SELECT * FROM users
               WHERE email = :email';
         $statement = $this->db->prepare($query);
         $statement->bindValue(':email', $user->email);
@@ -83,7 +83,7 @@ class UserDAM extends DAM {
     public function updateUser($user) {
 
         // Check to see if the user is already in the database.
-        $query = 'SELECT email FROM users
+        $query = 'SELECT * FROM users
               WHERE email = :email';
         $statement = $this->db->prepare($query);
         $statement->bindValue(':email', $user->email);
