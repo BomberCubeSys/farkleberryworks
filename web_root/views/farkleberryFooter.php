@@ -47,9 +47,9 @@
         <div class="contact col-lg-4 col-md-4 col-sm-12 col-xs-12">
           <h5>Contact Details</h5>
           <ul>
-            <li class="address"><i class="fa fa-map-marker"></i>Bigshop Plaza, 22 Hoi Wing Road, Delhi, India.</li>
-            <li class="mobile"><i class="fa fa-phone"></i>+91 9898989898</li>
-            <li class="email"><i class="fa fa-envelope"></i><a href="mailto:info@bigshop.com">info@bigshop.com</a>
+            <li class="address"><i class="fa fa-map-marker"></i>Farkleberry Farms</li>
+            <li class="mobile"><i class="fa fa-phone"></i>+1(800)Farkleberry</li>
+            <li class="email"><i class="fa fa-envelope"></i><a href="">farkleberryworks@myspace.com</a>
           </ul>
         </div>
       </div>
@@ -71,7 +71,7 @@
 
           <!-- Payments Types
           ============================================= -->
-          <div class="powered_text pull-left flip col-md-4"> Bigshop Template Â© 2017, Template By HarnishDesign </div>
+          <div class="powered_text pull-left flip col-md-4"> Farkleberry Works © 2018</div>
 
           <!-- Social Icon
           ============================================= -->
@@ -79,14 +79,7 @@
           <div class="social pull-right flip"> <a href="https://www.facebook.com/harnishdesign/" target="_blank"> <img data-toggle="tooltip" src="image/socialicons/facebook.png" alt="Facebook" title="Facebook"></a> <a href="#" target="_blank"> <img data-toggle="tooltip" src="image/socialicons/twitter.png" alt="Twitter" title="Twitter"> </a> <a href="#" target="_blank"> <img data-toggle="tooltip" src="image/socialicons/google_plus.png" alt="Google+" title="Google+"> </a> <a href="#" target="_blank"> <img data-toggle="tooltip" src="image/socialicons/pinterest.png" alt="Pinterest" title="Pinterest"> </a> <a href="#" target="_blank"> <img data-toggle="tooltip" src="image/socialicons/rss.png" alt="RSS" title="RSS"> </a></div>
           </div><!--Payments Types End-->
         </div>
-      </div>
-
-      <!-- Custom Block
-      ============================================= -->
-      <div class="custom-text">
-                  <p><b>Custom Block</b><br>You can insert any content (HTML, Text, Images) Here. Lorem Ipsum is simply dummy text of the <a target="_blank" href="#">printing and typesetting</a> industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p><p><br></p><p><b>Online shopping worldwide</b><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <a target="_blank" href="#">Lorem Ipsum</a> has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p><p class="text-center"><img src="image/small-logo.png"></p></div><!--Custom Block End-->
-
-    </div>
+      </div>      
   </div><!--Footer Part 2 End-->
 
   <!-- Back to Top

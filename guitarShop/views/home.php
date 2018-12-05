@@ -1,14 +1,9 @@
-<?php require('views/guitarShopHeader.php'); ?>
-<main>
-    <section>
-        <h1>Featured products</h1>
-        <p>My Guitar Shop has a great selection of
-            musical instruments including guitars, basses, and drums. And we're
-            constantly adding more to give you the best selection possible!
-        </p>
-        <table>
-            <?php
-            foreach ($vm->products as $product) {
+<?php require('views/farkleberryHeader.php'); ?>
+<div id="container" class="container">
+    <div class="row">
+        <div id="content" class="col-sm-12">    
+            <div class="row products-category">
+                <?php foreach ($vm->products as $product) {
 
                 // Get product data
                 $listPrice = $product->listPrice;
@@ -24,28 +19,25 @@
                 $i = strpos($descriptionWithTags, "</p>");
                 $descriptionParagraph = substr($descriptionWithTags, 3, $i - 3);
                 ?>
-                <tr>
-                    <td class="product_image_cell">
-                        <img src="content/images/<?php echo $product->productCode; ?>_s.png"
-                             alt="&nbsp;">
-                    </td>
-                    <td class="product_info_cell">
-                        <p>
-                            <a href="?ctlr=home&amp;action=viewProduct&amp;productId=<?php echo $product->id; ?>">
-                                   <?php echo $product->name; ?>
-                            </a>
-                        </p>
-                        <p>
-                            <b>Your price:</b>
-                            $<?php echo number_format($unitPrice, 2); ?>
-                        </p>
-                        <p>
-                            <?php echo $descriptionParagraph; ?>
-                        </p>
-                    </td>
-                </tr>
-            <?php } ?>
-        </table>
-    </section>
-</main>
-<?php require('views/guitarShopFooter.php');
+                    <div class="product-layout product-grid col-lg-3 col-mid-3 col-sm-4 col-xs-12">
+                        <div class="product-thumb">
+                            <div class="image">
+                                <img src="content/images/<?php echo $product->productCode; ?>.jpg" alt="&nbsp;" title="" class="img-responsive"/>
+                            </div>
+                            <div> 
+                                <div class="caption">
+                                    <h5><?php echo $product->name; ?></h5>
+                                    <p><?php echo $descriptionParagraph; ?></p>
+                                    <p class="price">$<?php echo $product->listPrice; ?></p>
+                                </div>
+                                <button class="btn btn-primary" type="submit" value="Add To Cart"><span>Add To Cart</span></button>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php require('views/farkleberryFooter.php');
