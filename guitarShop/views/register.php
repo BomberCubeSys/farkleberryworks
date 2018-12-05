@@ -11,15 +11,16 @@
     ============================================= -->
       <ul class="breadcrumb">
         <li><a href="/"><i class="fa fa-home"></i></a></li>
-        <li><a href="/?ctrl=account&action=login">Account</a></li>
-        <li><a href="/?ctrl=account&action=register">Register</a></li>
+        <li><a href="/?ctlr=account&action=login">Account</a></li>
+        <li><a href="/?ctlr=account&action=register">Register</a></li>
       </ul><!-- Breadcrumb End-->
 
       <div class="row">
         <!--Middle Part Start-->
         <div class="col-sm-9" id="content">
           <h1 class="title">Register Account</h1>
-          <p>If you already have an account with us, please login at the <a href="/?ctrl=account&action=login">Login Page</a>.</p>
+          <p>If you already have an account with us, please login at the <a href="/?ctlr=account&action=login">Login Page</a>.</p>
+          <?php if (isset($vm)) echo $vm->errorMsg;?>
           <form class="form-horizontal" action="." method="POST">
             <input type="hidden" name='ctlr' value='account' />
             <input type="hidden" name='action' value='register' />
@@ -95,13 +96,13 @@
               <div class="form-group required">
                 <label for="input-country" class="col-sm-2 control-label">Country</label>
                 <div class="col-sm-10">
-                  <input class="text" class="form-control" id="input-country" name="country" placeholder="Country" value="">
+                  <input type="text" class="form-control" id="input-country" name="country" placeholder="Country" value="">
                 </div>
               </div>
               <div class="form-group required">
                 <label for="input-zone" class="col-sm-2 control-label">Region / State</label>
                 <div class="col-sm-10">
-                  <input class="text" class="form-control" id="input-state" name="state" placeholder="State" value="">
+                  <input type="text" class="form-control" id="input-state" name="state" placeholder="State" value="">
                 </div>
               </div>
             </fieldset>

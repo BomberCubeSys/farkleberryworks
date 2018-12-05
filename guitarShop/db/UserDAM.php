@@ -19,8 +19,7 @@ class UserDAM extends DAM {
      * not in the database.
      */
     public function getUser($email) {
-        $query = 'SELECT * FROM users
-              WHERE email = :email';
+        $query = 'SELECT * FROM users WHERE email = :email';
         $statement = $this->db->prepare($query);
         $statement->bindValue(':email', $email);
         $statement->execute();
@@ -29,7 +28,21 @@ class UserDAM extends DAM {
         if ($userDB == null) {
             return null;
         } else {
-            return new User($this->mapColsToVars($userDB));
+          $foundUser = new User();
+          $foundUser->id = $userDB['id'];
+          $foundUser->firstname = $userDB['firstname'];
+          $foundUser->lastname = $userDB['lastname'];
+          $foundUser->email = $userDB['email'];
+          $foundUser->phone = $userDB['phone'];
+          $foundUser->address = $userDB['address'];
+          $foundUser->city = $userDB['city'];
+          $foundUser->state = $userDB['state'];
+          $foundUser->zip = $userDB['zip'];
+          $foundUser->country = $userDB['country'];
+          $foundUser->state = $userDB['state'];
+          $foundUser->password = $userDB['password'];
+          $foundUser->admin = $userDB['admin'];
+          return $foundUser;
         }
     }
 
@@ -39,44 +52,47 @@ class UserDAM extends DAM {
      * database, the object is updated.
      * @param type $user the User object to be written.
      */
-    public function createUser($user) {
+    public function createUser(User $newUser) {
         // Check to see if the user is already in the database.
-        $query = 'SELECT email FROM users
-              WHERE email = :email';
+        $query = 'SELECT email FROM users WHERE email = :email';
         $statement = $this->db->prepare($query);
-        $statement->bindValue(':email', $user->email);
+        $statement->bindValue(':email', $newUser->email);
         $statement->execute();
         $userDB = $statement->fetch();
         $statement->closeCursor();
         if ($userDB == null) {
-
-            // Add a new user to the database
-            $query = 'INSERT INTO products
-                (firstname, lastname, email,
-                phone, address, city, zip, country,
-                state, password, admin)
-              VALUES
-                (:firstname, :lastname, :email,
-                :phone, :address, :city, :zip,
-                :country, :state, :password, :admin )';
-            $statement = $this->db->prepare($query);
-            $statement->bindValue(':firstname',$user->firstname);
-            $statement->bindValue(':lastname',$user->lastname);
-            $statement->bindValue(':email',$user->email);
-            $statement->bindValue(':phone',$user->phone);
-            $statement->bindValue(':address',$user->address);
-            $statement->bindValue(':city',$user->city);
-            $statement->bindValue(':zip',$user->zip);
-            $statement->bindValue(':country',$user->country);
-            $statement->bindValue(':state',$user->state);
-            $statement->bindValue(':password',$user->password);
-            $statement->bindValue(':admin',$user->admin);
-            $statement->execute();
-            $statement->closeCursor();
-            return 0; //no error
+          // Add a new user to the database
+          $query = 'INSERT INTO users
+              (firstname, lastname, email,
+              phone, address, city, zip, country,
+              state, password, admin, id)
+            VALUES
+              (:firstname, :lastname, :email,
+              :phone, :address, :city, :zip,
+              :country, :state, :password, :admin, :id)';
+          $statement = $this->db->prepare($query);
+          $statement->bindValue(':firstname',$newUser->firstname);
+          $statement->bindValue(':lastname',$newUser->lastname);
+          $statement->bindValue(':email',$newUser->email);
+          $statement->bindValue(':phone',$newUser->phone);
+          $statement->bindValue(':address',$newUser->address);
+          $statement->bindValue(':city',$newUser->city);
+          $statement->bindValue(':zip',$newUser->zip);
+          $statement->bindValue(':country',$newUser->country);
+          $statement->bindValue(':state',$newUser->state);
+          $statement->bindValue(':password',$newUser->password);
+          $statement->bindValue(':admin', 0 );
+          $statement->bindValue(':id', null);
+          $statement->execute();
+          $statement->closeCursor();
+          //no error
+          return;
         } else {
-            return 1;//error
+          return "email already exists";//error
         }
+
+
+
     }
 
     // This function should only be used by logged in users on their own user email.
@@ -85,7 +101,7 @@ class UserDAM extends DAM {
     public function updateUser($user) {
 
         // Check to see if the user is already in the database.
-        $query = 'SELECT email FROM users
+        $query = 'SELECT * FROM users
               WHERE email = :email';
         $statement = $this->db->prepare($query);
         $statement->bindValue(':email', $user->email);
@@ -136,6 +152,8 @@ class UserDAM extends DAM {
                 $varArray ['phone'] = $value;
             } else if ($key == 'address') {
                 $varArray ['address'] = $value;
+            } else if ($key == 'email' ) {
+                $varArray ['email'] = $value;
             } else if ($key == 'city') {
                 $varArray ['city'] = $value;
             } else if ($key == 'zip') {

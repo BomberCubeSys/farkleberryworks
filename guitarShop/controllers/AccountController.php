@@ -23,6 +23,7 @@
      $vm = AccountVm::loginInstance();
      // Redirect to Home page on success
      if ($vm->errorMsg == '') {
+       $vm = ProductsVM::getFeaturedInstance();
        Page::$title = 'Home';
        require(APP_NON_WEB_BASE_DIR . 'views/home.php');
      } else {
@@ -33,12 +34,14 @@
 
 	 public function myAccountGET() {
 		Page::$title = 'My Account';
+    $vm = AccountVM::accountInstance();
 		//Page::$user = $_SESSION['user']->username;
 		require(APP_NON_WEB_BASE_DIR . 'views/myAccount.php');
 	 }
 
  	 public function myAccountPOST() {
  		Page::$title = 'My Account';
+    $vm = AccountVM::accountInstance();
  		//Page::$user = $_SESSION['user']->username;
  		require(APP_NON_WEB_BASE_DIR . 'views/myAccount.php');
  	 }
