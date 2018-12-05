@@ -95,13 +95,13 @@
               <div class="form-group required">
                 <label for="input-country" class="col-sm-2 control-label">Country</label>
                 <div class="col-sm-10">
-                  <input class="text" class="form-control" id="input-country" name="country" placeholder="Country" value="">
+                  <input type="text" class="form-control" id="input-country" name="country" placeholder="Country" value="">
                 </div>
               </div>
               <div class="form-group required">
                 <label for="input-zone" class="col-sm-2 control-label">Region / State</label>
                 <div class="col-sm-10">
-                  <input class="text" class="form-control" id="input-state" name="state" placeholder="State" value="">
+                  <input type="text" class="form-control" id="input-state" name="state" placeholder="State" value="">
                 </div>
               </div>
             </fieldset>

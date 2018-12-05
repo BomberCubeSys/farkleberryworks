@@ -112,11 +112,11 @@ class ProductDAM extends DAM {
                 (:catID, :prodCode, :name, :desc, :listP, :discP)';
 			$statement = $this->db->prepare($query);
 			$statement->bindValue(':catID',$product->categoryId);
-			$statement->bindValue(':prodCode',$product->productCode); 
+			$statement->bindValue(':prodCode',$product->productCode);
 			$statement->bindValue(':name',$product->name);
 			$statement->bindValue(':desc',$product->description);
-			$statement->bindValue(':listP',$product->listPrice); 
-			$statement->bindValue(':discP',$product->discountPercent); 
+			$statement->bindValue(':listP',$product->listPrice);
+			$statement->bindValue(':discP',$product->discountPercent);
             $statement->execute();
             $statement->closeCursor();
         } else {
@@ -134,11 +134,11 @@ class ProductDAM extends DAM {
             $statement = $this->db->prepare($query);
 			$statement->bindValue(':ID',$product->id);
 			$statement->bindValue(':catID',$product->categoryId);
-			$statement->bindValue(':prodCode',$product->productCode); 
+			$statement->bindValue(':prodCode',$product->productCode);
 			$statement->bindValue(':name',$product->name);
 			$statement->bindValue(':desc',$product->description);
-			$statement->bindValue(':listP',$product->listPrice); 
-			$statement->bindValue(':discP',$product->discountPercent); 
+			$statement->bindValue(':listP',$product->listPrice);
+			$statement->bindValue(':discP',$product->discountPercent);
             $statement->execute();
             $statement->closeCursor();
         }
@@ -146,7 +146,7 @@ class ProductDAM extends DAM {
 
     /**
      * Delete the specified Product object from the database.
-     * 
+     *
      * @param type $product the Product object to be deleted.
      */
     public function deleteProduct($product) {
@@ -155,7 +155,7 @@ class ProductDAM extends DAM {
 
     /**
      * Delete the Product object from the database with the specified ID.
-     * 
+     *
      * @param type $productID the ID of the Product to be deleted.
      */
     public function deleteProductById($productID) {

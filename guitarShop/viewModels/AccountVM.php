@@ -21,14 +21,15 @@ class AccountVM {
     } else {
       $this->User = '';
     }
-    if (isset($email)) {
+    if (isset($_SESSION['email'])) {
       $this->user = $this->UserDAM->getUser($email);
     }
   }
 
   public static function newUserInstance() {
     $vm = new self();
-    $vm->email = hPOST('email');
+    // $vm->email = hPOST('email');
+    $vm->email = $_POST['email'];
     //if block for validation functions for email, phone, zip, and password
     //if (hPOST('phone'))...
     //
