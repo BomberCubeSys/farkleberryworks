@@ -1,7 +1,9 @@
-<?php require('views/farkleberryHeader.php'); ?>
+<?php require('views/farkleberryHeader.php');
+  isLoggedInGeneral();
+  ?>
 <div id="container" class="container">
     <div class="row">
-        <div id="content" class="col-sm-12">    
+        <div id="content" class="col-sm-12">
             <div class="row products-category">
                 <?php foreach ($vm->products as $product) {
 
@@ -24,7 +26,7 @@
                             <div class="image">
                                 <img src="content/images/<?php echo $product->productCode; ?>.jpg" alt="&nbsp;" title="" class="img-responsive"/>
                             </div>
-                            <div> 
+                            <div>
                                 <div class="caption">
                                     <h5><?php echo $product->name; ?></h5>
                                     <p><?php echo $descriptionParagraph; ?></p>
