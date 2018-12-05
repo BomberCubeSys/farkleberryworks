@@ -41,8 +41,7 @@ class UserDAM extends DAM {
      */
     public function createUser(User $user) {
         // Check to see if the user is already in the database.
-        $query = 'SELECT * FROM users
-              WHERE email = :email';
+        $query = 'SELECT email FROM users WHERE email = :email';
         $statement = $this->db->prepare($query);
         $statement->bindValue(':email', $user->email);
         $statement->execute();
@@ -74,7 +73,7 @@ class UserDAM extends DAM {
         $statement->bindValue(':admin',$user->admin);
         $statement->execute();
         $statement->closeCursor();
-        return 0; //no error
+        //no error
     }
 
     // This function should only be used by logged in users on their own user email.
